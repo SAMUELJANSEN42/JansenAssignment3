@@ -4,8 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 <title>Rotating Square</title>
 
-
-<!-- ADDED NEW VERTEX SHADER with no animation-->
 <script id="vertex-shader-still" type="x-shader/x-vertex">
     #version 300 es
     
@@ -33,8 +31,8 @@ main()
     float s = sin(uTheta);
     float c = cos(uTheta);
 
-    gl_Position.x = -s*aPosition.y + c*aPosition.x;
-    gl_Position.y =  s*aPosition.x + c*aPosition.y;
+    gl_Position.x = (-s*aPosition.y - 0.5) + c*aPosition.x;
+    gl_Position.y =  (s*aPosition.x - 0.4) + c*aPosition.y;
     gl_Position.z = 0.0;
     gl_Position.w = 1.0;
 }

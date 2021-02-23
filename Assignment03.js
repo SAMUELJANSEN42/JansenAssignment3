@@ -18,17 +18,12 @@ window.onload = function init()
     gl = canvas.getContext('webgl2');
     if (!gl) alert( "WebGL 2.0 isn't available" );
 
-    //
-    //  Configure WebGL
-    //
     gl.viewport(0, 0, canvas.width, canvas.height);
-    gl.clearColor(.9, .9, .9, 1.0);
+    gl.clearColor(0, 0, 0, 1.0);
 
-    //  Load shaders and initialize attribute buffers
     program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
 
-    //note that this is no longer a local variable (removed the "var")
     vertices = [
         vec2(0, 0.25),
         vec2(-0.25, 0),
@@ -37,18 +32,18 @@ window.onload = function init()
     ];
     
     verticesTriangle = [
-        vec2(.6, .6),
-        vec2(1, .6),
-        vec2(.8, 1)
+        vec2(.4, .2),
+        vec2(1, .2),
+        vec2(.4, .27),
+        vec2(1, .2),
+        vec2(1, .27),
+        vec2(.4, .27)
     ];
 
 
-    // establish shaders and uniform variables
     program = initShaders(gl, "vertex-shader", "fragment-shader");
     thetaLoc = gl.getUniformLocation(program, "uTheta");
     programTriangle = initShaders(gl, "vertex-shader-still", "fragment-shader");
-
-    // Note we do not load the buffers in the init function 
 
     render();
 };
