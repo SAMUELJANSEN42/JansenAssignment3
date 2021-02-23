@@ -23,7 +23,9 @@
 #version 300 es
 
 in vec4 aPosition;
-uniform float uTheta;  
+uniform float uTheta; 
+uniform float udy;
+uniform float udx; 
 
 void
 main()
@@ -31,8 +33,8 @@ main()
     float s = sin(uTheta);
     float c = cos(uTheta);
 
-    gl_Position.x = (-s*aPosition.y - 0.5) + c*aPosition.x;
-    gl_Position.y =  (s*aPosition.x - 0.4) + c*aPosition.y;
+    gl_Position.x = -s*aPosition.y + c*aPosition.x + udx;
+    gl_Position.y =  s*aPosition.x + c*aPosition.y + udy;
     gl_Position.z = 0.0;
     gl_Position.w = 1.0;
 }
@@ -47,7 +49,7 @@ out vec4 fColor;
 void
 main()
 {
-    fColor = vec4(1.0, 0.0, 0.0, 1.0);
+    fColor = vec4(1.0, 0.64, 0.0, 1.0);
 }
 </script>
 
@@ -57,6 +59,15 @@ main()
 </head>
 
 <body>
+<div>
+    Speed <input id="slider" type="range"
+    min="0.0" max="0.4" step="0.1" value="0.1">
+</div>
+<button id="Direction">Change Rotation Direction</button>
+<select id="Controls" size="2">
+    <option value="0">freeze</option>
+    <option value="1">restart </option>
+<select>
 <canvas id="gl-canvas" width="512" height="512">
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
